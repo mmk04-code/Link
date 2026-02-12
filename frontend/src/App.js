@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from "react-router-dom";
 import "./App.css";
 
@@ -119,6 +119,12 @@ function Register() {
 function ClientDashboard() {
   const navigate = useNavigate();
 
+   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, [navigate]);
+
   const handleLogout = () => {
     localStorage.clear();
     navigate("/");
@@ -140,6 +146,12 @@ function FreelancerDashboard() {
     localStorage.clear();
     navigate("/");
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <div className="container">
