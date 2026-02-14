@@ -11,6 +11,9 @@ function Login() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
+// Example API call (will be enabled once backend JWT is ready)
+// await api.post("/login", { email, password, role });
+
     if (!email || !password || !role) {
       alert("Please fill all fields");
       return;
@@ -60,6 +63,9 @@ function Login() {
 /* ---------------- REGISTER COMPONENT ---------------- */
 
 function Register() {
+// Example API call (will be enabled once backend JWT is ready)
+// await api.post("/register", { name, email, password, role });
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
