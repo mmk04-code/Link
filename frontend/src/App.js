@@ -10,22 +10,41 @@ function Login() {
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-// Example API call (will be enabled once backend JWT is ready)
-// await api.post("/login", { email, password, role });
-
+  const handleLogin = async () => {
     if (!email || !password || !role) {
       alert("Please fill all fields");
       return;
     }
 
-    localStorage.setItem("token", "dummy-jwt-token");
-    localStorage.setItem("role", role);
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
 
-    if (role === "Client") {
-      navigate("/client-dashboard");
-    } else {
-      navigate("/freelancer-dashboard");
+      const data = await response.json();
+
+      if (response.ok && data.access) {
+        localStorage.setItem("token", data.access);
+        localStorage.setItem("refresh", data.refresh);
+        localStorage.setItem("role", data.role);
+
+        if (data.role === "Client") {
+          navigate("/client-dashboard");
+        } else {
+          navigate("/freelancer-dashboard");
+        }
+      } else {
+        alert("Invalid login credentials");
+      }
+    } catch (error) {
+      alert("Backend not reachable");
     }
   };
 
@@ -63,24 +82,41 @@ function Login() {
 /* ---------------- REGISTER COMPONENT ---------------- */
 
 function Register() {
-// Example API call (will be enabled once backend JWT is ready)
-// await api.post("/register", { name, email, password, role });
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!name || !email || !password || !role) {
       alert("Please fill all fields");
       return;
     }
 
-    // Simulate successful registration
-    alert("Registration successful! Please login.");
-    navigate("/");
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/register/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+          role: role,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Registration successful! Please login.");
+        navigate("/");
+      } else {
+        alert("Registration failed");
+      }
+    } catch (error) {
+      alert("Backend not reachable");
+    }
   };
 
   return (
@@ -125,7 +161,7 @@ function Register() {
 function ClientDashboard() {
   const navigate = useNavigate();
 
-   useEffect(() => {
+  useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/");
     }
@@ -148,16 +184,16 @@ function ClientDashboard() {
 function FreelancerDashboard() {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/");
-  };
-
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/");
     }
   }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
   return (
     <div className="container">
