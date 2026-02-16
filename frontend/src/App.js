@@ -1,51 +1,84 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 import "./App.css";
 
 /* ---------------- LOGIN COMPONENT ---------------- */
-
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    if (!email || !password || !role) {
+    if (!email || !password) {
       alert("Please fill all fields");
       return;
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/login/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
+      const response = await axios.post("http://127.0.0.1:8000/api/token/", {
+        email: email,
+        password: password,
       });
 
-      const data = await response.json();
+      console.log("Login response:", response.data);
+      
+      localStorage.setItem("access", response.data.access);
+      localStorage.setItem("refresh", response.data.refresh);
 
-      if (response.ok && data.access) {
-        localStorage.setItem("token", data.access);
-        localStorage.setItem("refresh", data.refresh);
-        localStorage.setItem("role", data.role);
+      // Fetch user details to get role
+      const userResponse = await axios.get("http://127.0.0.1:8000/api/users/me/", {
+        headers: { Authorization: `Bearer ${response.data.access}` }
+      });
 
-        if (data.role === "Client") {
-          navigate("/client-dashboard");
-        } else {
-          navigate("/freelancer-dashboard");
-        }
+      console.log("User data:", userResponse.data);
+      
+      // Redirect based on role
+      if (userResponse.data.role === "CLIENT") {
+        navigate("/client-dashboard");
+      } else if (userResponse.data.role === "FREELANCER") {
+        navigate("/freelancer-dashboard");
       } else {
-        alert("Invalid login credentials");
+        navigate("/client-dashboard"); // fallback
       }
-    } catch (error) {
-      alert("Backend not reachable");
+      
+} catch (error) {
+  console.error("Login error:", error);
+  
+  if (error.response) {
+    // Backend responded with error
+    const status = error.response.status;
+    const data = error.response.data;
+    
+    if (status === 401) {
+      alert("Invalid email or password. Please try again.");
+    } 
+    else if (status === 400) {
+      if (data.detail) {
+        alert("" + data.detail);
+      } else {
+        alert("Please check your email and password format.");
+      }
+    } 
+    else if (status === 403) {
+      alert("Your account doesn't have access. Please contact support.");
+    } 
+    else if (status === 500) {
+      alert("Server error. Please try again later.");
+    } 
+    else {
+      alert("Login failed. Please try again.");
     }
+  } 
+  else if (error.request) {
+    // Request made but no response
+    alert("Cannot connect to server. Please check:\n• Backend is running\n• Internet connection");
+  } 
+  else {
+    // Something else happened
+    alert("An unexpected error occurred. Please try again.");
+  }
+}
   };
 
   return (
@@ -55,20 +88,16 @@ function Login() {
       <input
         type="email"
         placeholder="Email"
+        value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
 
       <input
         type="password"
         placeholder="Password"
+        value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-
-      <select onChange={(e) => setRole(e.target.value)}>
-        <option value="">-- Select Role --</option>
-        <option value="Client">Client</option>
-        <option value="Freelancer">Freelancer</option>
-      </select>
 
       <button onClick={handleLogin}>Login</button>
 
@@ -80,69 +109,89 @@ function Login() {
 }
 
 /* ---------------- REGISTER COMPONENT ---------------- */
-
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    if (!name || !email || !password || !role) {
+    if (!name || !email || !password || !role || !confirmPassword) {
       alert("Please fill all fields");
       return;
     }
 
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+
+    const nameParts = name.trim().split(' ');
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/register/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          password: password,
-          role: role,
-        }),
+      const response = await axios.post("http://127.0.0.1:8000/api/users/register/", {
+        username: email.split('@')[0],
+        email: email,
+        password: password,
+        first_name: firstName,
+        last_name: lastName,
+        role: role === "Client" ? "CLIENT" : "FREELANCER",
       });
 
-      if (response.ok) {
+      console.log("Register response:", response.data);
+      
+      if (response.status === 201 || response.status === 200) {
         alert("Registration successful! Please login.");
         navigate("/");
-      } else {
-        alert("Registration failed");
       }
     } catch (error) {
-      alert("Backend not reachable");
+      console.error("Register error:", error);
+      if (error.response) {
+        alert("Registration failed: " + JSON.stringify(error.response.data));
+      } else {
+        alert("Backend not reachable");
+      }
     }
   };
 
   return (
     <div className="container">
-      <h2>TalentLink Register</h2>
+      <h2>Register for TalentLink</h2>
 
       <input
         type="text"
         placeholder="Full Name"
+        value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
       <input
         type="email"
         placeholder="Email"
+        value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
 
       <input
         type="password"
         placeholder="Password"
+        value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <select onChange={(e) => setRole(e.target.value)}>
-        <option value="">-- Select Role --</option>
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+      />
+
+      <select value={role} onChange={(e) => setRole(e.target.value)}>
+        <option value="">Select Role</option>
         <option value="Client">Client</option>
         <option value="Freelancer">Freelancer</option>
       </select>
@@ -156,13 +205,13 @@ function Register() {
   );
 }
 
-/* ---------------- DASHBOARDS ---------------- */
-
+/* ---------------- CLIENT DASHBOARD ---------------- */
 function ClientDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
+    const token = localStorage.getItem("access");
+    if (!token) {
       navigate("/");
     }
   }, [navigate]);
@@ -181,11 +230,13 @@ function ClientDashboard() {
   );
 }
 
+/* ---------------- FREELANCER DASHBOARD ---------------- */
 function FreelancerDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
+    const token = localStorage.getItem("access");
+    if (!token) {
       navigate("/");
     }
   }, [navigate]);
@@ -204,8 +255,7 @@ function FreelancerDashboard() {
   );
 }
 
-/* ---------------- APP ROUTES ---------------- */
-
+/* ---------------- MAIN APP COMPONENT ---------------- */
 function App() {
   return (
     <Router>
