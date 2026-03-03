@@ -1,0 +1,121 @@
+.project-details-container {
+    min-height: 100vh;
+    background-color: #f4f6fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 30px 40px;
+}
+
+.details-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.back-link {
+    color: #0d6efd;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.details-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 35px 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.details-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.details-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin: 0 0 15px 0;
+}
+
+.details-meta-bar {
+    display: flex;
+    gap: 25px;
+    color: #666;
+    font-size: 14px;
+}
+
+.meta-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.details-body {
+    margin-bottom: 30px;
+}
+
+.section-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.details-desc {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    white-space: pre-wrap;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.skill-tag {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.apply-section {
+    border-top: 1px solid #eee;
+    padding-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-apply {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
+}
+
+.btn-apply:hover {
+    background-color: #0b5ed7;
+}

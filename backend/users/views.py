@@ -3,8 +3,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import User
-from .serializers import UserSerializer, RegisterSerializer
+from .models import User, Profile
+from .serializers import UserSerializer, RegisterSerializer, ProfileSerializer
 
 
 class RegisterView(generics.CreateAPIView):
@@ -31,3 +31,11 @@ class CurrentUserView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class ProfileView(generics.RetrieveUpdateAPIView):
+    serializer_class = ProfileSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user.profile

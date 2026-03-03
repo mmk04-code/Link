@@ -1,0 +1,134 @@
+.proposal-form-container {
+    min-height: 100vh;
+    background-color: #f4f6fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.proposal-form-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 35px 40px;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.form-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin: 0 0 10px 0;
+}
+
+.form-subtitle {
+    color: #666;
+    font-size: 15px;
+    margin: 0;
+}
+
+.proposal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-input,
+.form-textarea {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 12px 15px;
+    font-size: 15px;
+    color: #495057;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.input-with-symbol {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 15px;
+    color: #666;
+}
+
+.input-with-symbol .form-input {
+    padding-left: 30px;
+    width: 100%;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-submit-proposal {
+    flex: 1;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-submit-proposal:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-cancel {
+    flex: 1;
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #e2e6ea;
+    border-color: #cbd3da;
+}

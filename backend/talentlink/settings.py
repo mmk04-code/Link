@@ -24,6 +24,12 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'users',
+    'projects',
+    'proposals',
+    'contracts',
+    'messaging',
+    'notifications',
+    'reviews',
 ]
 
 

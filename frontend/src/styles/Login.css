@@ -1,0 +1,131 @@
+/* Apply green gradient to whole background on login/register */
+.auth-page-body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.auth-container-glow {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 16px;
+    border-radius: 28px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.auth-card {
+    width: 380px;
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-logo {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+.auth-form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.auth-label {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f7f9fa;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.auth-input:focus {
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.3);
+}
+
+.forgot-password-link {
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.forgot-password-link a {
+    color: #1abc9c;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password-link a:hover {
+    text-decoration: underline;
+}
+
+.btn-auth-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: #0d3b66;
+    /* Deep navy blue similar to reference */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-auth-submit:hover {
+    background-color: #092847;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+    color: #666;
+}
+
+.auth-footer a {
+    color: #0d3b66;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}

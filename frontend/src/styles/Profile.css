@@ -1,0 +1,196 @@
+.profile-page-container {
+    min-height: 100vh;
+    background-color: #f4f6fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.profile-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    height: max-content;
+}
+
+.profile-header {
+    background-color: #0d6efd;
+    color: white;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.profile-avatar {
+    background-color: #ffffff;
+    color: #0d6efd;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.profile-role {
+    font-size: 14px;
+    opacity: 0.9;
+    text-transform: capitalize;
+    margin-top: 5px;
+}
+
+.profile-body {
+    padding: 30px;
+}
+
+/* View Mode Styles */
+.profile-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.info-label {
+    font-size: 13px;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.skills-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.profile-skill-tag {
+    background-color: #eef2f7;
+    color: #4b525a;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Edit Mode Styles (Compact Form) */
+.profile-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.edit-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+}
+
+.edit-input,
+.edit-textarea {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.2s;
+    background-color: #fafbfc;
+}
+
+.edit-input:focus,
+.edit-textarea:focus {
+    outline: none;
+    border-color: #0d6efd;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+}
+
+.edit-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Action Buttons */
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-profile-primary {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-profile-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-profile-secondary {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-profile-secondary:hover {
+    background-color: #e2e6ea;
+}
