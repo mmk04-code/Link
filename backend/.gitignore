@@ -13,3 +13,19 @@ __pycache__/
 
 # Frontend
 frontend/node_modules/
+# Python
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+
+# Node
+node_modules/
+build/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
