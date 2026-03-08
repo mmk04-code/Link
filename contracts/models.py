@@ -69,6 +69,11 @@ class Contract(models.Model):
     class Meta:
         ordering = ["-created_at"]
 
+        # Database index for faster queries
+        indexes = [
+            models.Index(fields=["status"]),
+        ]
+
     def contract_duration(self):
         if self.end_date:
             return self.end_date - self.start_date
