@@ -20,5 +20,10 @@ class Project(models.Model):
     class Meta:
         ordering = ["-created_at"]
 
+        # Database performance optimization
+        indexes = [
+            models.Index(fields=["skills_required"]),
+        ]
+
     def __str__(self):
         return f"{self.title} - {self.client.username}"
