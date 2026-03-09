@@ -6,6 +6,7 @@ from contracts.views import ContractViewSet
 from messaging.views import MessageViewSet
 from notifications.views import NotificationViewSet
 from reviews.views import ReviewViewSet
+from proposals.views import ProposalViewSet
 # from users.admin_views import AdminContractViewSet, AdminReviewViewSet  # TEMPORARILY COMMENTED
 
 router = DefaultRouter()
@@ -13,6 +14,7 @@ router.register(r'contracts', ContractViewSet, basename='contract')
 router.register(r'messages', MessageViewSet, basename='message')
 router.register(r'notifications', NotificationViewSet, basename='notification')
 router.register(r'reviews', ReviewViewSet, basename='review')
+router.register(r'proposals', ProposalViewSet, basename='proposal')
 # router.register(r'admin/contracts', AdminContractViewSet, basename='admin-contract')
 # router.register(r'admin/reviews', AdminReviewViewSet, basename='admin-review')
 
@@ -22,6 +24,6 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/users/', include('users.urls')),
     path('api/projects/', include('projects.urls')),
-    path('api/proposals/', include('proposals.urls')),
+    path('api/dashboard/', include('dashboard.urls')),
     path('api/', include(router.urls)),
 ]
