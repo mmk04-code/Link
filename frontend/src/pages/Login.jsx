@@ -6,6 +6,7 @@ import "../styles/Login.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -92,13 +93,18 @@ function Login() {
 
             <div className="auth-form-group" style={{ marginBottom: "5px" }}>
               <label className="auth-label">Password</label>
-              <input
-                type="password"
-                className="auth-input"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="password-field">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="auth-input"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? "🙈" : "👁️"}
+                </span>
+              </div>
             </div>
 
             <div className="forgot-password-link">

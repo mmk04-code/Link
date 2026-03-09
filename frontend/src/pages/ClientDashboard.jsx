@@ -115,10 +115,10 @@ function ClientDashboard() {
             onClick={() => navigate("/projects")}
           >
             <div className="stat-header">
-              <span className="stat-icon orange">📋</span> In Progress Projects
+              <span className="stat-icon orange">📁</span> In Progress Projects
             </div>
             <div className="stat-number">{inProgressProjects}</div>
-            <div className="stat-subtext">{inProgressProjects === 0 ? "No active projects" : `${inProgressProjects} active currently`}</div>
+            <div className="stat-subtext">{inProgressProjects === 0 ? "✨ No active projects yet" : `${inProgressProjects} active currently`}</div>
           </div>
           <div
             className="stat-card"
@@ -129,7 +129,7 @@ function ClientDashboard() {
               <span className="stat-icon purple">✉️</span> New Proposals
             </div>
             <div className="stat-number">{newProposals}</div>
-            <div className="stat-subtext">Requires your attention</div>
+            <div className="stat-subtext">{newProposals === 0 ? "✨ No pending proposals" : "Requires your attention"}</div>
           </div>
           <div
             className="stat-card"
@@ -145,9 +145,12 @@ function ClientDashboard() {
         </div>
 
         {/* Action Buttons */}
-        <div className="action-section">
-          <button className="post-project-btn-lg" onClick={() => navigate("/projects/create")}>
-            <span className="plus-icon">+</span> POST NEW PROJECT
+        <div className="action-section" style={{ display: 'flex', gap: '15px' }}>
+          <button className="post-project-btn-lg" onClick={() => navigate("/projects/create")} style={{ flex: 1 }}>
+            <span className="plus-icon">➕</span> POST NEW PROJECT
+          </button>
+          <button className="post-project-btn-lg" onClick={() => navigate("/proposals")} style={{ flex: 1, backgroundColor: '#ffffff', color: '#0f172a', border: '1px solid #cbd5e1', boxShadow: '0 1px 2px 0 rgba(0,0,0,0.05)' }}>
+            📋 VIEW ALL PROPOSALS
           </button>
         </div>
 
@@ -164,7 +167,10 @@ function ClientDashboard() {
 
           <div className="project-list-wrapper">
             {projects.length === 0 ? (
-              <p style={{ color: '#777', padding: '10px 0' }}>You haven't posted any projects yet.</p>
+              <div style={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0', color: '#64748b' }}>
+                <div style={{ fontSize: '32px', marginBottom: '10px' }}>✨</div>
+                <p style={{ fontSize: '15px', fontWeight: '500', margin: 0 }}>No active projects yet - create your first one!</p>
+              </div>
             ) : (
               projects.map(project => (
                 <div key={project.id} className="project-list-card">

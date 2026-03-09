@@ -103,7 +103,7 @@ function FreelancerDashboard() {
               <span className="stat-icon blue">⏳</span> Pending Proposals
             </div>
             <div className="stat-number">{pendingProposals}</div>
-            <div className="stat-subtext">Awaiting client response</div>
+            <div className="stat-subtext">{pendingProposals === 0 ? "✨ No pending proposals" : "Awaiting client response"}</div>
           </div>
           <div
             className="stat-card"
@@ -114,7 +114,7 @@ function FreelancerDashboard() {
               <span className="stat-icon green">🎉</span> Accepted Proposals
             </div>
             <div className="stat-number">{acceptedProposals}</div>
-            <div className="stat-subtext">Active jobs won</div>
+            <div className="stat-subtext">{acceptedProposals === 0 ? "✨ No accepted jobs yet" : "Active jobs won"}</div>
           </div>
           <div
             className="stat-card"
@@ -132,7 +132,7 @@ function FreelancerDashboard() {
         {/* Action Buttons */}
         <div className="action-section">
           <button className="btn-primary-lg" onClick={() => navigate("/projects")}>
-            <span style={{ fontSize: "20px", color: "#ff7f50" }}>🔍</span> FIND PROJECTS
+            🔍 FIND PROJECTS
           </button>
           <button className="btn-secondary-lg" onClick={() => navigate("/proposals")}>
             📄 VIEW MY PROPOSALS

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import "../styles/Login.css";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
@@ -52,48 +55,84 @@ function Register() {
   };
 
   return (
-    <div className="container">
-      <h2>Register for TalentLink</h2>
+    <div className="auth-page-body">
+      <div className="auth-container-glow">
+        <div className="auth-card">
+          <div className="auth-logo">TalentLink</div>
+          <h2 className="auth-title">Register</h2>
 
-      <input
-        type="text"
-        placeholder="Full Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+          <form onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
+            <div className="auth-form-group">
+              <label className="auth-label">Full Name</label>
+              <input
+                type="text"
+                className="auth-input"
+                placeholder="John Doe"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+            <div className="auth-form-group">
+              <label className="auth-label">Email</label>
+              <input
+                type="email"
+                className="auth-input"
+                placeholder="username@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+            <div className="auth-form-group">
+              <label className="auth-label">Password</label>
+              <div className="password-field">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="auth-input"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? "🙈" : "👁️"}
+                </span>
+              </div>
+            </div>
 
-      <input
-        type="password"
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
+            <div className="auth-form-group">
+              <label className="auth-label">Confirm Password</label>
+              <div className="password-field">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  className="auth-input"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <span className="eye-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                  {showConfirmPassword ? "🙈" : "👁️"}
+                </span>
+              </div>
+            </div>
 
-      <select value={role} onChange={(e) => setRole(e.target.value)}>
-        <option value="">Select Role</option>
-        <option value="Client">Client</option>
-        <option value="Freelancer">Freelancer</option>
-      </select>
+            <div className="auth-form-group" style={{ marginBottom: "25px" }}>
+              <label className="auth-label">Role</label>
+              <select className="auth-select" value={role} onChange={(e) => setRole(e.target.value)}>
+                <option value="">Select Role</option>
+                <option value="Client">Client</option>
+                <option value="Freelancer">Freelancer</option>
+              </select>
+            </div>
 
-      <button onClick={handleRegister}>Register</button>
+            <button type="submit" className="btn-auth-submit">Create Account</button>
+          </form>
 
-      <p style={{ marginTop: "15px" }}>
-        Already have an account? <Link to="/">Login here</Link>
-      </p>
+          <div className="auth-footer">
+            Already have an account? <Link to="/">Login here</Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
