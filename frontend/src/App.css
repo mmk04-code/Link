@@ -1,31 +1,55 @@
+/* ===== App.css — Global base (SaaS dark theme) ===== */
+
 body {
-  background-color: #f4f6f8;
-  font-family: Arial, sans-serif;
+  background-color: var(--bg-base, #0c0c0f);
+  font-family: var(--font-ui, 'Manrope', 'Inter', 'Segoe UI', sans-serif);
+  color: var(--text-primary, #ffffff);
 }
 
 .container {
   width: 350px;
   margin: 100px auto;
   padding: 30px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background: var(--bg-surface, #0e0e16);
+  border: 1px solid var(--border-subtle, #1a1a2e);
+  border-radius: var(--radius-lg, 12px);
   text-align: center;
-    position: relative;
+  position: relative;
 }
 
 input, select {
   width: 100%;
-  padding: 8px;
+  padding: 10px 14px;
   margin: 10px 0;
+  background: var(--bg-elevated, #13131f);
+  border: 1px solid var(--border-default, #1e1e2e);
+  border-radius: var(--radius-md, 8px);
+  color: var(--text-primary, #ffffff);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+input:focus, select:focus {
+  border-color: var(--brand, #5b52f3);
+}
+
+input::placeholder {
+  color: var(--text-faint, #3a3a5c);
 }
 
 button {
   padding: 10px 25px;
-  background-color: #007bff;
+  background: linear-gradient(135deg, var(--brand, #1ad598), #11b5cf);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--radius-md, 8px);
   cursor: pointer;
   margin-top: 10px;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+
+button:hover {
+  opacity: 0.92;
 }

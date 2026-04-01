@@ -39,7 +39,13 @@ class MessageViewSet(viewsets.ModelViewSet):
                 message=f'You have a new message from {request.user.get_full_name()} in contract "{contract.title}"',
                 related_contract=contract,
                 related_message=message,
-                data={'sender_id': request.user.id, 'sender_name': request.user.get_full_name()}
+                data={
+                    'sender_id': request.user.id,
+                    'sender_name': request.user.get_full_name(),
+                    'contract_id': contract.id,
+                    'message_id': message.id,
+                    'link': f'/messages?contract={contract.id}&open=unread&source=notification',
+                }
             )
 
             return Response(
@@ -54,7 +60,30 @@ class MessageViewSet(viewsets.ModelViewSet):
         contract_id = request.query_params.get('contract_id')
         if not contract_id:
             return Response({'error': 'contract_id is required'}, status=status.HTTP_400_BAD_REQUEST)
+
         messages = self.get_queryset().filter(contract_id=contract_id)
+
+        # Opening a conversation counts as reading incoming messages.
+        unread_incoming = messages.filter(receiver=request.user, is_read=False)
+        unread_ids = list(unread_incoming.values_list('id', flat=True))
+        if unread_ids:
+            unread_incoming.update(is_read=True, read_at=models.functions.Now())
+            Notification.objects.filter(
+                user=request.user,
+                type='message',
+                related_message_id__in=unread_ids,
+                is_read=False,
+            ).update(is_read=True, read_at=models.functions.Now())
+            Notification.objects.filter(
+                user=request.user,
+                type='message',
+                related_contract_id=contract_id,
+                is_read=False,
+            ).filter(
+                models.Q(data__message_id__in=unread_ids) |
+                models.Q(related_message_id__in=unread_ids)
+            ).update(is_read=True, read_at=models.functions.Now())
+
         serializer = self.get_serializer(messages, many=True)
         return Response(serializer.data)
 
@@ -64,4 +93,22 @@ class MessageViewSet(viewsets.ModelViewSet):
         if request.user != message.receiver:
             return Response({'error': 'Only the receiver can mark messages as read'}, status=status.HTTP_403_FORBIDDEN)
         message.mark_as_read()
+
+        Notification.objects.filter(
+            user=request.user,
+            type='message',
+            related_message=message,
+            is_read=False,
+        ).update(is_read=True, read_at=models.functions.Now())
+
+        Notification.objects.filter(
+            user=request.user,
+            type='message',
+            related_contract=message.contract,
+            is_read=False,
+        ).filter(
+            models.Q(data__message_id=message.id) |
+            models.Q(related_message=message)
+        ).update(is_read=True, read_at=models.functions.Now())
+
         return Response(MessageSerializer(message, context={'request': request}).data)

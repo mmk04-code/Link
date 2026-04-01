@@ -1,0 +1,133 @@
+/* ===== Admin Login — SaaS Redesign Fix 1 ===== */
+
+.admin-login-container {
+  min-height: 100vh;
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+}
+
+.admin-login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.admin-login-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(91, 82, 243, 0.12);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.admin-login-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+.admin-login-header p {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.admin-error-message {
+  background: var(--red-dim);
+  border: 1px solid rgba(229, 62, 90, 0.25);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--red);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-form-group {
+  margin-bottom: 16px;
+}
+
+.admin-form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 6px;
+}
+
+.admin-form-group input {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 11px 14px;
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.admin-form-group input::placeholder {
+  color: var(--text-faint);
+}
+
+.admin-form-group input:focus {
+  border-color: var(--brand);
+}
+
+.admin-login-btn {
+  width: 100%;
+  background: var(--brand);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.15s;
+}
+
+.admin-login-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.admin-login-footer {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.admin-login-footer a {
+  display: block;
+  font-size: 13px;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.admin-login-footer a:hover {
+  text-decoration: underline;
+}

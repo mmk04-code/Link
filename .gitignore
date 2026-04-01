@@ -1,0 +1,12 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.log
+db.sqlite3
+.DS_Store
+node_modules/
+*.test.js
+test_*.py
+debug.log
+tree.txt

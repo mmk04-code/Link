@@ -26,7 +26,7 @@ class Review(models.Model):
     
     would_recommend = models.BooleanField(default=True)
     
-    is_public = models.BooleanField(default=True)
+    is_public = models.BooleanField(default=False)
     flagged = models.BooleanField(default=False)
     flag_reason = models.TextField(blank=True)
     

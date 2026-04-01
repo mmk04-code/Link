@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
@@ -13,8 +13,17 @@ function Register() {
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = async () => {
-    if (!name || !email || !password || !role || !confirmPassword) {
+  useEffect(() => {
+    document.body.classList.add("register-page-active");
+    return () => {
+      document.body.classList.remove("register-page-active");
+    };
+  }, []);
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    if (!name || !email || !password || !confirmPassword || !role) {
       alert("Please fill all fields");
       return;
     }
@@ -42,7 +51,7 @@ function Register() {
 
       if (response.status === 201 || response.status === 200) {
         alert("Registration successful! Please login.");
-        navigate("/");
+        navigate("/login");
       }
     } catch (error) {
       console.error("Register error:", error);
@@ -55,14 +64,47 @@ function Register() {
   };
 
   return (
-    <div className="auth-page-body">
-      <div className="auth-container-glow">
-        <div className="auth-card">
-          <div className="auth-logo">TalentLink</div>
-          <h2 className="auth-title">Register</h2>
+    <div className="auth-split-layout">
+      {/* Left Brand Panel */}
+      <div className="auth-brand-panel">
+        <div className="auth-brand-content">
+          <div className="brand-logo-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <h1 className="brand-name">TalentLink</h1>
+          <p className="brand-tagline">Where Talent Meets Opportunity</p>
+          
+          <div className="brand-features">
+            <div className="feature-row">
+              <span className="feature-dot dot-brand"></span>
+              <span className="feature-text">Connect with top clients and skilled freelancers</span>
+            </div>
+            <div className="feature-row">
+              <span className="feature-dot dot-green"></span>
+              <span className="feature-text">Secure payments and seamless contract management</span>
+            </div>
+            <div className="feature-row">
+              <span className="feature-dot dot-amber"></span>
+              <span className="feature-text">24/7 dedicated support and dispute resolution</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <form onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
-            <div className="auth-form-group">
+      {/* Right Form Panel */}
+      <div className="auth-form-panel">
+        <div className="auth-form-card">
+          <div className="form-header">
+            <h2>Create your account</h2>
+            <p>Join TalentLink and unlock new opportunities.</p>
+          </div>
+
+          <form onSubmit={handleRegister}>
+            <div className="auth-group">
               <label className="auth-label">Full Name</label>
               <input
                 type="text"
@@ -73,20 +115,20 @@ function Register() {
               />
             </div>
 
-            <div className="auth-form-group">
+            <div className="auth-group">
               <label className="auth-label">Email</label>
               <input
                 type="email"
                 className="auth-input"
-                placeholder="username@email.com"
+                placeholder="you@company.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
-            <div className="auth-form-group">
+            <div className="auth-group">
               <label className="auth-label">Password</label>
-              <div className="password-field">
+              <div className="password-wrapper">
                 <input
                   type={showPassword ? "text" : "password"}
                   className="auth-input"
@@ -94,15 +136,19 @@ function Register() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+                <button
+                  type="button"
+                  className="eye-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
                   {showPassword ? "🙈" : "👁️"}
-                </span>
+                </button>
               </div>
             </div>
 
-            <div className="auth-form-group">
+            <div className="auth-group">
               <label className="auth-label">Confirm Password</label>
-              <div className="password-field">
+              <div className="password-wrapper">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   className="auth-input"
@@ -110,26 +156,41 @@ function Register() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-                <span className="eye-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                <button
+                  type="button"
+                  className="eye-toggle"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
                   {showConfirmPassword ? "🙈" : "👁️"}
-                </span>
+                </button>
               </div>
             </div>
 
-            <div className="auth-form-group" style={{ marginBottom: "25px" }}>
+            <div className="auth-group">
               <label className="auth-label">Role</label>
-              <select className="auth-select" value={role} onChange={(e) => setRole(e.target.value)}>
-                <option value="">Select Role</option>
-                <option value="Client">Client</option>
-                <option value="Freelancer">Freelancer</option>
-              </select>
+              <div className="role-selector">
+                <div 
+                  className={`role-card ${role === "Client" ? "active" : ""}`}
+                  onClick={() => setRole("Client")}
+                >
+                  I'm a Client
+                </div>
+                <div 
+                  className={`role-card ${role === "Freelancer" ? "active" : ""}`}
+                  onClick={() => setRole("Freelancer")}
+                >
+                  I'm a Freelancer
+                </div>
+              </div>
             </div>
 
-            <button type="submit" className="btn-auth-submit">Create Account</button>
+            <button type="submit" className="auth-submit-btn">
+              Create Account
+            </button>
           </form>
 
-          <div className="auth-footer">
-            Already have an account? <Link to="/">Login here</Link>
+          <div className="auth-switch-link">
+            Already have an account? <Link to="/login">Sign in</Link>
           </div>
         </div>
       </div>

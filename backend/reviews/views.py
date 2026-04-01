@@ -2,6 +2,7 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.db import models
+from django.db.models import Q
 from .models import Review
 from notifications.models import Notification
 from .serializers import ReviewSerializer
@@ -16,7 +17,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
         if contract_id:
             queryset = queryset.filter(contract_id=contract_id)
         if not self.request.user.is_staff:
-            queryset = queryset.filter(is_public=True)
+            queryset = queryset.filter(Q(reviewer=self.request.user) | Q(reviewee=self.request.user))
         return queryset.select_related('reviewer', 'reviewee', 'contract')
 
     def create(self, request, *args, **kwargs):
@@ -40,6 +41,8 @@ class ReviewViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def user(self, request):
         user_id = request.query_params.get('user_id', request.user.id)
+        if not request.user.is_staff and str(user_id) != str(request.user.id):
+            return Response({'error': 'You can only access your own review summary.'}, status=403)
         reviews = self.get_queryset().filter(reviewee_id=user_id)
         serializer = self.get_serializer(reviews, many=True)
         if reviews.exists():

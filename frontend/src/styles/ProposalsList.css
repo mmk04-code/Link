@@ -1,121 +1,409 @@
-.proposals-page-container {
-    min-height: 100vh;
-    background-color: #f4f6fb;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 30px 40px;
+/* ===== Proposals Page — SaaS Redesign ===== */
+
+.proposals-page-wrapper {
+  background: transparent;
+  padding: 24px;
+  min-height: 100%;
 }
 
-.proposals-list-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.proposals-header {
+  margin-bottom: 24px;
 }
 
-.proposal-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 25px 30px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    position: relative;
+.proposals-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.3px;
+  margin: 0 0 4px;
 }
 
-.proposal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
+.proposals-header p {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin: 0;
 }
 
-.proposal-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #333;
-    margin: 0;
+.proposals-toolbar {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.status-badge {
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    color: white;
-    text-transform: capitalize;
+.proposals-toolbar select {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  padding: 7px 10px;
+  font-size: 12px;
+  min-width: 140px;
 }
 
-.status-badge.pending {
-    background-color: #ffc107;
+.proposals-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  background: transparent;
 }
 
-.status-badge.accepted {
-    background-color: #28a745;
+.proposals-error-wrap {
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.status-badge.rejected {
-    background-color: #dc3545;
+.proposals-error-text {
+  color: var(--red);
+  font-size: 14px;
+  margin: 0;
 }
 
-.proposal-details {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
+.proposals-retry-btn {
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  padding: 8px 14px;
+  cursor: pointer;
 }
 
-.detail-row {
-    display: flex;
-    font-size: 15px;
-    color: #555;
-    align-items: flex-start;
+.proposals-retry-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
 }
 
-.detail-label {
-    font-weight: 600;
-    color: #333;
-    width: 120px;
-    flex-shrink: 0;
+.proposals-empty {
+  background: linear-gradient(180deg, rgba(8, 23, 48, 0.95), rgba(6, 17, 35, 0.95));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  padding: 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.detail-value {
-    color: #777;
-    flex-grow: 1;
+.empty-icon {
+  font-size: 32px;
+  opacity: 0.5;
+  margin-bottom: 16px;
 }
 
-.proposal-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 20px;
+.proposals-empty h3 {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+  margin: 0 0 6px;
 }
 
-.btn-accept {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 18px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
+.proposals-empty p {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin: 0;
 }
 
-.btn-accept:hover {
-    background-color: #218838;
+/* Proposal Card */
+.saas-proposal-card {
+  background: linear-gradient(180deg, rgba(7, 21, 45, 0.96), rgba(5, 16, 34, 0.96));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--panel-shadow);
+  transition: border-color 0.15s, transform 0.15s ease;
 }
 
-.btn-reject {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 18px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
+.saas-proposal-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-1px);
 }
 
-.btn-reject:hover {
-    background-color: #c82333;
+/* Top Row */
+.spc-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.spc-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spc-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--brand-dim);
+  color: var(--brand);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.spc-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.spc-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.spc-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.spc-budget-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.spc-budget-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.spc-bid-edit-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.spc-bid-edit-label {
+  font-size: 10px;
+  color: var(--text-faint);
+}
+
+.spc-bid-edit-input-wrap {
+  position: relative;
+}
+
+.spc-bid-currency {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-faint);
+  font-size: 12px;
+}
+
+.spc-bid-edit-input {
+  width: 120px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  padding: 6px 8px 6px 20px;
+  font-size: 12px;
+  text-align: right;
+}
+
+.spc-bid-edit-input:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+.spc-budget {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.spc-budget-type {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: 2px;
+}
+
+/* Status Pill Standards */
+.status-pill {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.status-pill.pending, .status-pill.draft {
+  background: #1a1a2e;
+  color: var(--text-muted);
+}
+
+.status-pill.accepted, .status-pill.active {
+  background: var(--green-dim);
+  color: var(--green);
+}
+
+.status-pill.rejected, .status-pill.cancelled {
+  background: var(--red-dim);
+  color: var(--red);
+}
+
+.status-pill.completed {
+  background: var(--blue-dim);
+  color: var(--blue);
+}
+
+/* Middle Section */
+.spc-middle {
+  margin: 10px 0 14px;
+}
+
+.spc-project-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.spc-delivery {
+  font-size: 12px;
+  color: var(--text-faint);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.spc-reputation-block {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+}
+
+.spc-reputation-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.spc-reputation-score {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f5c15a;
+}
+
+.spc-reputation-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.spc-reputation-snippet {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Cover Letter */
+.spc-cover-letter {
+  background: var(--bg-elevated);
+  border: 1px solid rgba(39, 220, 182, 0.08);
+  border-radius: var(--radius-soft);
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.spc-cover-letter p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Bottom Actions */
+.spc-bottom-row {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.spc-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.spc-actions .btn-saas-accept,
+.spc-actions .btn-saas-reject {
+  min-height: 36px;
+}
+
+@media (max-width: 900px) {
+  .spc-actions .btn-saas-accept,
+  .spc-actions .btn-saas-reject {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .spc-actions .btn-saas-accept,
+  .spc-actions .btn-saas-reject {
+    flex: 1 1 100%;
+  }
+}
+
+.btn-saas-accept {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-saas-accept:hover {
+  opacity: 0.88;
+}
+
+.btn-saas-reject {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-saas-reject:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-dim);
 }
