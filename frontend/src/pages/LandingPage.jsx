@@ -7,7 +7,7 @@ const LandingPage = () => {
     <div className="landing-container">
       {/* Header */}
       <nav className="landing-nav">
-        <div className="logo">TalentLink</div>
+        <div className="logo">Link</div>
         <div className="nav-links">
           <Link to="/login">Login</Link>
           <Link to="/register">Register</Link>
@@ -46,7 +46,7 @@ const LandingPage = () => {
 
       {/* Footer */}
       <footer className="landing-footer">
-        <p>© 2026 TalentLink - Connecting Freelancers & Clients Worldwide</p>
+        <p>© 2026 Link - Connecting Freelancers & Clients Worldwide</p>
       </footer>
     </div>
   );

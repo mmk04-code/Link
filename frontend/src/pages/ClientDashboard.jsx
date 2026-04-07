@@ -417,8 +417,8 @@ function ClientDashboard() {
             onClick={() => setBrandMenuOpen((prev) => !prev)}
             title="Open navigation menu"
           >
-            <div className="cd-brand-icon">T</div>
-            <span className="cd-brand-name">TalentLink</span>
+            <div className="cd-brand-icon">L</div>
+            <span className="cd-brand-name">Link</span>
           </button>
         </div>
         <div className="cd-navbar-right">

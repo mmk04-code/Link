@@ -178,9 +178,9 @@ const Sidebar = ({ embedded = false, onNavigate }) => {
       {!embedded && (
         <div className="sidebar-brand">
           <div className="brand-icon-box">
-            <span className="brand-icon-letter">T</span>
+            <span className="brand-icon-letter">L</span>
           </div>
-          <span className="brand-text">TalentLink</span>
+          <span className="brand-text">Link</span>
         </div>
       )}
 

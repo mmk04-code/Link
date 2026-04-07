@@ -94,7 +94,7 @@ function Login() {
               <polyline points="2 12 12 17 22 12"></polyline>
             </svg>
           </div>
-          <h1 className="brand-name">TalentLink</h1>
+          <h1 className="brand-name">Link</h1>
           <p className="brand-tagline">Where Talent Meets Opportunity</p>
           
           <div className="brand-features">

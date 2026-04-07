@@ -413,8 +413,8 @@ function FreelancerDashboard() {
             onClick={() => setBrandMenuOpen((prev) => !prev)}
             title="Open navigation menu"
           >
-            <div className="fd-brand-icon">T</div>
-            <span className="fd-brand-name">TalentLink</span>
+            <div className="fd-brand-icon">L</div>
+            <span className="fd-brand-name">Link</span>
           </button>
         </div>
         <div className="fd-navbar-right">

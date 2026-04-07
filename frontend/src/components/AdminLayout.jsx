@@ -267,7 +267,7 @@ const AdminLayout = ({ children, onSearch, showSearch = true, searchDebounceMs =
       <aside className="admin-sidebar">
         <div className="sidebar-header">
           <button type="button" className="admin-brand-btn" onClick={() => navigate('/admin/dashboard')}>
-            TalentLink Admin
+            Link Admin
           </button>
         </div>
         <nav className="sidebar-nav">
