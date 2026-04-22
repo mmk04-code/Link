@@ -9,8 +9,7 @@ import "../styles/FreelancerDashboard.css";
 const toAbsoluteMediaUrl = (url) => {
   if (!url || typeof url !== 'string') return '';
   if (/^https?:\/\//i.test(url)) return url;
-  const apiOrigin = (window.__API_ORIGIN__ || 'http://127.0.0.1:8000').replace(/\/+$/, '');
-  if (url.startsWith('/')) return `${apiOrigin}${url}`;
+  if (url.startsWith('/')) return `http://127.0.0.1:8000${url}`;
   return url;
 };
 
@@ -414,7 +413,7 @@ function FreelancerDashboard() {
             onClick={() => setBrandMenuOpen((prev) => !prev)}
             title="Open navigation menu"
           >
-            <div className="fd-brand-icon">L</div>
+            <div className="fd-brand-icon">T</div>
             <span className="fd-brand-name">Link</span>
           </button>
         </div>

@@ -9,8 +9,7 @@ import "../styles/ClientDashboard.css";
 const toAbsoluteMediaUrl = (url) => {
   if (!url || typeof url !== 'string') return '';
   if (/^https?:\/\//i.test(url)) return url;
-  const apiOrigin = (window.__API_ORIGIN__ || 'http://127.0.0.1:8000').replace(/\/+$/, '');
-  if (url.startsWith('/')) return `${apiOrigin}${url}`;
+  if (url.startsWith('/')) return `http://127.0.0.1:8000${url}`;
   return url;
 };
 
@@ -418,7 +417,7 @@ function ClientDashboard() {
             onClick={() => setBrandMenuOpen((prev) => !prev)}
             title="Open navigation menu"
           >
-            <div className="cd-brand-icon">L</div>
+            <div className="cd-brand-icon">T</div>
             <span className="cd-brand-name">Link</span>
           </button>
         </div>

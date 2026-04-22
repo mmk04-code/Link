@@ -31,14 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'users',
-    'projects',
-    'proposals',
-    'contracts',
-    'messaging',
-    'notifications',
-    'reviews',
-    'dashboard',
+    'apps.accounts.apps.AccountsConfig',
 ]
 
 
@@ -56,7 +49,7 @@ MIDDLEWARE = [
 
 
 # URL CONFIG
-ROOT_URLCONF = 'talentlink.urls'
+ROOT_URLCONF = 'config.urls'
 
 
 # TEMPLATES
@@ -77,7 +70,7 @@ TEMPLATES = [
 
 
 # WSGI
-WSGI_APPLICATION = 'talentlink.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # DATABASE
@@ -107,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # CUSTOM USER MODEL
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 
 # INTERNATIONALIZATION

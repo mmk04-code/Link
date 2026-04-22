@@ -4,7 +4,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_user_is_verified_alter_user_role'),
+        ('accounts', '0002_user_is_verified_alter_user_role'),
     ]
 
     operations = [

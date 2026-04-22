@@ -90,7 +90,7 @@ function AdminLogin() {
               name="email"
               value={credentials.email}
               onChange={handleChange}
-              placeholder="admin@talentlink.com"
+              placeholder="admin@link.com"
               autoComplete="email"
               required
             />

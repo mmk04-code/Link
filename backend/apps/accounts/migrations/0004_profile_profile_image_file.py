@@ -4,7 +4,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0003_profile_company_and_social_fields'),
+        ('accounts', '0003_profile_company_and_social_fields'),
     ]
 
     operations = [
