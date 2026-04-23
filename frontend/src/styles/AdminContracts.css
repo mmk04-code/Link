@@ -1,0 +1,25 @@
+/* ===== Admin Contracts — SaaS Redesign ===== */
+/* Inherits shared styles from AdminUsers.css (.stats-cards, .stat-card, .filter-tabs, .table-wrap, .status) */
+
+.admin-contracts-page {
+  background: var(--bg-base);
+}
+
+.admin-contracts-page .page-header {
+  margin-bottom: 20px;
+}
+
+.admin-contracts-page .page-header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e8e8ff;
+  letter-spacing: -0.2px;
+  margin: 0 0 4px;
+}
+
+.admin-contracts-page .page-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}

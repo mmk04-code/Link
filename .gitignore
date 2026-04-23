@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.so
+.python-version
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Django
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+
+# Logs and reports
+*.log
+coverage/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+frontend/build/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Test and cache artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Project-specific scratch files
+debug.log
+tree.txt
+test_out.txt

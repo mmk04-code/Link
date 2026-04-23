@@ -1,0 +1,79 @@
+@import './styles/tokens.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.app-reference-theme {
+  background:
+    radial-gradient(55rem 32rem at 52% 5%, rgba(26, 213, 152, 0.16), transparent 62%),
+    radial-gradient(38rem 24rem at 12% 12%, rgba(76, 167, 255, 0.18), transparent 68%),
+    linear-gradient(180deg, #041228 0%, #020a1a 40%, #020816 100%);
+  background-attachment: fixed;
+}
+
+body.app-reference-theme::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(103, 146, 182, 0.2) 0.7px, transparent 0.7px);
+  background-size: 3px 3px;
+  opacity: 0.08;
+  z-index: -2;
+}
+
+body.app-reference-theme::after {
+  content: "";
+  position: fixed;
+  width: 34rem;
+  height: 34rem;
+  left: 50%;
+  top: 6rem;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(31, 210, 165, 0.22) 0%, rgba(31, 210, 165, 0) 70%);
+  filter: blur(18px);
+  z-index: -1;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card {
+  background: var(--bg-elevated);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-accent);
+}
